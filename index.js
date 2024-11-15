@@ -29,7 +29,8 @@ app.post('/create-payment-intent', async (req, res) => {
                 quantity: quantity.toString(), // Stripe metadata requires values to be strings
             },
         });
-
+        console.log(paymentIntent);
+        
         // Send the client_secret to the client
         res.json({ clientSecret: paymentIntent.client_secret });
 
@@ -43,7 +44,7 @@ app.post('/create-payment-intent', async (req, res) => {
 });
 
 app.post("/create-shopify-order", async (req, res) => {
-
+   
     const { paymentIntentId, customerEmail, customerName, shippingAddress, billingAddress } = req.body;
 
     console.log('paymentIntentId : ', paymentIntentId);
