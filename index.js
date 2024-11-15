@@ -46,7 +46,12 @@ app.post("/create-shopify-order", async (req, res) => {
 
     const { paymentIntentId, customerEmail, customerName, shippingAddress, billingAddress } = req.body;
 
+    console.log('paymentIntentId : ', paymentIntentId);
+
     const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+
+    console.log(paymentIntent);
+    
 
     const variant_id = paymentIntent.metadata.variant_id;
     const quantity = parseInt(paymentIntent.metadata.quantity, 10);
